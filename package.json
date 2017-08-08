@@ -1,0 +1,27 @@
+{
+  "name": "teamworkjs",
+  "version": "1.0.0",
+  "description": "SoftUni Project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gomelGA/TeamworkJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gomelGA/TeamworkJS/issues"
+  },
+  "homepage": "https://github.com/gomelGA/TeamworkJS#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.15.3",
+    "express-handlebars": "^3.0.0",
+    "hbs": "^4.0.1",
+    "mongoose": "^4.11.5"
+  }
+}
