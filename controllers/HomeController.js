@@ -1,11 +1,6 @@
 //For encryption of passwords
 const CryptoJS = require("crypto-js");
 
-const mongoose = require('mongoose');
-var db = mongoose.createConnection('mongodb://softuni_user:mag1karp@ds055875.mlab.com:55875/softuni_project');
-
-console.log(db.collections);
-
 /**
  * @param {express()} app
  * @param {urlencoded()} urlParser
@@ -15,8 +10,8 @@ module.exports = function HomeController(app, urlParser) {
         res.render('test');
     });
 
+    //These are just testing functions.
     app.post('/testForm', urlParser, function(req, res) {
-        let password = CryptoJS.AES.encrypt(req.body.password, 'SoftUniProject');
 
         let passedData = {
             username: req.body.username,

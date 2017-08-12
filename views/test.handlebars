@@ -1,35 +1,55 @@
+{{> header}}
 {{#> body}}
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
-                <form action="/testForm" method="post">
-                    <div class="form-group">
-                        <label for="username">Username:</label>
-                        <input type="text" name="username" class="form-control">
-                    </div>
+            <div class="col-md-5">
+                <div class="panel panel-success">
+                    <div class="panel-heading">Register</div>
+                    <div class="panel-body">
 
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" name="password" class="form-control">
+                        <form id="regForm" method="post" action="/registerUser">
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input type="text" name="username" class="form-control" id="username">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" id="password" name="password" class="form-control">
+                                <label for="confPassword">Confirm Password:</label>
+                                <input type="password" id="confPassword" name="confPassword" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="age">Age:</label>
+                                <input type="number" min="13" max="100" id="age" name="age" class="form-control">
+
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender:</label>
+                                <div class="spreadVer">
+                                    <label class="custom-control custom-radio">
+                                        <input id="gender" name="gender" type="radio" class="custom-control-input" value="m">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Male</span>
+                                    </label>
+                                    <label class="custom-control custom-radio">
+                                        <input id="gender" name="gender" type="radio" class="custom-control-input" value="f">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Female</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button type="button" id="regButton" class="btn btn-success width2 iCenter">Register</button>
+                        </form>
                     </div>
-                    <button class="form-control btn btn-success" type="submit">Submit</button>
-                </form>
+                </div>
+                <script src="js/actions/register.js"></script>
+                <script src="js/requirements/register.js"></script>
             </div>
         </div>
     </div>
-    <button id="ajButton" onclick="sendRequest()">AAAAAAAA</button>
-
-    <script>
-
-        function sendRequest(){
-            $.ajax({
-                    url: "/ajaxReq",
-                    type: 'GET',
-                    success: function() {
-                        alert('aaaa');
-                    }
-                }
-            );
-        };
-    </script>
 {{/ body}}

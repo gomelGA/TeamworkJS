@@ -2,14 +2,15 @@ const express = require('express');
 const expresshbs = require('express-handlebars');
 const bdp = require('body-parser');
 
-var app = express();
+global.configs = require('./config.js');
 
+var app = express();
 //Setting up handlebars
-app.engine('handlebars', expresshbs({defaultLayout: "main"}));
+app.engine('handlebars', expresshbs({}));
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
-//Setting up Body-Parser (For POST requests)
+//Setting up Body-Parser (For POST actions)
 var urlParser = bdp.urlencoded({extended: false});
 
 //Routing
