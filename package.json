@@ -4,7 +4,13 @@
   "description": "SoftUni Project",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "prestart": "npm-run-all --parallel lint",
+    "start": "npm-run-all --parallel security-check server:boot test",
+    "server:boot": "nodemon app.js",
+    "lint": "eslint --fix .", 
+    "security-check": "nsp check",
+    "share": "lt --port 5000"
   },
   "repository": {
     "type": "git",
@@ -23,5 +29,15 @@
     "express-handlebars": "^3.0.0",
     "hbs": "^4.0.1",
     "mongoose": "^4.11.5"
+  },
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "eslint": "^4.4.1",
+    "jsdoc": "^3.5.4",
+    "localtunnel": "^1.8.3",
+    "mocha": "^3.5.0",
+    "nodemon": "^1.11.0",
+    "npm-run-all": "^4.0.2",
+    "nsp": "^2.7.0"
   }
 }

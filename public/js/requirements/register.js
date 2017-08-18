@@ -1,3 +1,7 @@
-$('#regButton').on('click', function () {
-    registerAction();
-})
+var registerAction = require('../actions/register');
+
+$(() => {
+	$('#regButton').on('click', function () {
+		registerAction();
+	});
+});

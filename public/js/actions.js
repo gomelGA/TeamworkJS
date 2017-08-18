@@ -1,10 +1,10 @@
-function sendDummyRequestAction(){
-    $.ajax({
-            url: "/ajaxReq",
-            type: 'GET',
-            success: function() {
-                alert('Request sent and received a response.');
-            }
-        }
-    );
-}
+//function sendDummyRequestAction() {
+//    $.ajax({
+//        url: '/ajaxReq',
+//        type: 'GET',
+//        success: function () {
+//            alert('Request sent and received a response.');
+//        }
+//    });
+//}
+//
