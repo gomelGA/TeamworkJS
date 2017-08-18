@@ -7,14 +7,23 @@ const expresshbs = require('express-handlebars');
 const homeRouter = require('./routes/homeRouter');
 const userRouter = require('./routes/userRouter');
 
-global.configs = require('./config.js');
-
 var app = express();
-//Setting up handlebars
+//Setting up handlebars middleware
 app.engine('handlebars', expresshbs({}));
 app.set('view engine', 'handlebars');
 
 app.use(express.static('public'));
+
+//Setting up passport middleware
+const session = require('express-session');
+const cookieParser = require('cookie-parser')();
+const passport = require('passport');
+
+app.use(cookieParser);
+app.use(session({secret: "JSApplicationTeamwork"}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 /**
  *

@@ -1,4 +1,5 @@
 const CryptoJS = require('crypto-js');
+const userService = require('../services/userService');
 
 /**
  * @param {express()} app
@@ -8,12 +9,13 @@ module.exports = function UserController() {
     
 	function registerUser(req,res){
 		const UserSchema = require('../schemas/UserSchema');
-		let User = global.configs.db.model('User',UserSchema);
 		let password = CryptoJS.AES.encrypt(req.body.password,'123456789');
 
-		console.log(req.body.username);
-
-		let newUser = new User({
+        if(userService.userExists(req.body.username)){
+            res.redirect('/');
+        }
+        
+		let newUser = new UserSchema({
 			username: req.body.username,
 			password: password.toString(),
 			age: req.body.age,

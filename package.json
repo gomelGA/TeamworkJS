@@ -8,7 +8,7 @@
     "prestart": "npm-run-all --parallel lint",
     "start": "npm-run-all --parallel security-check server:boot test",
     "server:boot": "nodemon app.js",
-    "lint": "eslint --fix .", 
+    "lint": "eslint --fix .",
     "security-check": "nsp check",
     "share": "lt --port 5000"
   },
@@ -24,11 +24,15 @@
   "homepage": "https://github.com/gomelGA/TeamworkJS#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
     "crypto-js": "^3.1.9-1",
     "express": "^4.15.3",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.5",
     "hbs": "^4.0.1",
-    "mongoose": "^4.11.5"
+    "mongodb": "^2.2.31",
+    "mongoose": "^4.11.5",
+    "passport": "^0.4.0"
   },
   "devDependencies": {
     "chai": "^4.1.1",
