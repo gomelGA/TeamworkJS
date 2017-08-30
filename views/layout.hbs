@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -13,12 +13,12 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-    <script src="js/actions.js"></script>
+    
     <!-- CSS GOES HERE -->
 </head>
 
 <body>
-    <nav class="navbar navbar-default">
+   <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -52,11 +52,28 @@
                         </ul>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="/">Sign up</a></li>
-                    <li><a href="/">Sign in</a></li>
+                {{#if user}}
+                   <ul class="nav navbar-nav navbar-right">
+                    <li class="active">Hello {{user.fullName}}</li>
+                    <li><a href="/logout">Logout</a></li>
                 </ul>
+                {{else}}
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="/register">Sign up</a></li>
+                    <li><a href="/login">Sign in</a></li>
+                </ul>
+                {{/if}}
             </div>
         </div>
     </nav>
-
+    {{#if error }}
+        <h2>{{error}}</h2>
+    {{/if}}
+    {{{body}}}
+</body>
+<footer>
+    <div class="container modal-footer">
+        <p>&copy; this is the footer</p>
+    </div>
+</footer>
+</html>
