@@ -32,3 +32,13 @@
     display: block;
     margin: 0 auto;
 }
+
+.eventElem{
+    max-width: 25%;
+    position: relative;
+    float: left;
+}
+
+.eventElem .eventPreviewImg{
+    max-width: 100%
+}

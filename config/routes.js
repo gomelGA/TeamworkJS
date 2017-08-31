@@ -1,15 +1,18 @@
-const userController = require('./../controllers/user');
-const homeController = require('./../controllers/home');
+const userController = require('./../controllers/user')
+const homeController = require('./../controllers/home')
+const eventController = require('./../controllers/event')
 
-module.exports = (app) => {
-    app.get('/', homeController.index);
+module.exports = app => {
+  app.get('/', homeController.index)
 
-    app.get('/register', userController.registerGet);
-    app.post('/register', userController.registerPost);
+  app.get('/register', userController.registerGet)
+  app.post('/register', userController.registerPost)
 
-    app.get('/login', userController.loginGet);
-    app.post('/login', userController.loginPost);
+  app.get('/login', userController.loginGet)
+  app.post('/login', userController.loginPost)
 
-    app.get('/logout', userController.logout);
-};
+  app.get('/logout', userController.logout)
 
+  app.get('/createEvent', eventController.creationFormGet)
+  app.post('/createEvent', eventController.creationFormSubmit)
+}

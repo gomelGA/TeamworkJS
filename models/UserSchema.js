@@ -1,11 +1,13 @@
 const mongoose = require('mongoose')
 const encryption = require('./../utilities/encryption')
-let Schema = mongoose.Schema
+const ObjectId = mongoose.Schema.Types.ObjectId
 
 let UserModel = mongoose.Schema({
   email: { type: String, required: true, unique: true },
   fullName: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  eventsCreated: { type: [ObjectId], default: [] },
+  cart: { type: [ObjectId], default: [] },
   salt: { type: String, required: true }
 })
 

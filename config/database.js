@@ -15,4 +15,5 @@ module.exports = config => {
   })
 
   require('./../models/UserSchema')
+  require('./../models/EventSchema')
 }

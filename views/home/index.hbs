@@ -1,0 +1,19 @@
+<div id='evevntsBox' class="container">
+    {{#each elems}}
+    <div class="well eventElem">
+        <h1>{{this.eventTitle}}</h1>
+        <img class="eventPreviewImg" src="{{this.img}}" alt="">
+        <div class="content">{{this.description}}
+            <div>
+                <tags>{{this.tags}}</tags>
+                <div>{{this.eventDate}}</div>
+                <div>{{this.ticketPrice}}</price>
+                    <button>Buy button</button>
+                    <div>{{this.location}}</div>
+                </div>
+                <div>{{this.author.fullName}}</div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
