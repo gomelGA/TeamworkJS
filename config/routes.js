@@ -15,4 +15,12 @@ module.exports = app => {
 
   app.get('/createEvent', eventController.creationFormGet)
   app.post('/createEvent', eventController.creationFormSubmit)
+
+  app.get('/editEvent:id',eventController.editFormGet)
+  app.post('/editEvent:id',eventController.editFormSubmit)
+
+  app.get('/deleteEvent:id',eventController.deleteSubmit)
+
+
+  app.get('/profile', homeController.profileView)
 }

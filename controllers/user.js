@@ -9,8 +9,6 @@ module.exports = {
     registerPost:(req, res) => {
         let registerArgs = req.body;
 
-       console.log(registerArgs)
-
         User.findOne({email: registerArgs.email}).then(user => {
             let errorMsg = '';
             if (user) {
@@ -78,6 +76,8 @@ module.exports = {
 
     logout: (req, res) => {
         req.logOut();
-        res.redirect('/');
-    }
+        res.redirect('/profile');
+    },
+
+    
 };
