@@ -42,3 +42,19 @@
 .eventElem .eventPreviewImg{
     max-width: 100%
 }
+
+#map {
+        height: 400px;
+        width: 100%;
+       }
+#longAt{
+    visibility: hidden;
+}
+
+.bootstrap-tagsinput {
+            width: 100%;
+        }
+        
+.label {
+            line-height: 2 !important;
+        }

@@ -22,7 +22,28 @@
                 <div class="form-group row">
                     <label for="location" class="col-2 col-form-label">Location</label>
                     <div class="col-10">
-                        <input class="form-control" type="url" value="" id="location" name="location">
+                        <input class="form-control" type="text" value="" id="location" name="">
+                         
+                        <button id="mapSubmit" type="button" class="btn-info">Check Location</button>
+
+                        <h3>Location</h3>
+                        <input class="form-control" id="longAt" name="location"></input>
+                        <div id="map"></div>
+                        <script>
+                            function initMap() {
+                                var uluru = { lat: 42.698334, lng: 23.319941 };                                
+                                var map = new google.maps.Map(document.getElementById('map'), {
+                                    zoom: 6,
+                                    center: uluru
+                                });
+                                var marker = new google.maps.Marker({
+                                    position: uluru,
+                                    map: map
+                                });
+                            }
+                        </script>
+                        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5U4qgJfbbGVBQc1Ewa0X0vJpZrvyIRSM&callback=initMap">
+                        </script>
                     </div>
                 </div>
                 <div class="form-group row">

@@ -18,17 +18,7 @@ module.exports = {
     let articleValidation = validateArticle(eventParams)
     let authenticationValidation = authentication(req)
 
-    // validation logick TODO
-    // if(articleValidation!=""){
-    //     //TODO this is only diplayed on the server console, not to the User
-    //     console.log(articleValidation)
-    //     return
-    // }
 
-    // if(authenticationValidation!=""){
-    //     console.log(authenticationValidation)
-    //     return
-    // }
 
     eventParams.tags = eventParams.tags.split(',')
     eventParams.author = req.user.id
@@ -54,7 +44,6 @@ module.exports = {
 
     Event.findOne({ _id: eventId }).then(event => {
      
-      event.eventDate = event.eventDate.toString()
    
       event.tags = event.tags.join(',')
       res.render('eventForms/editForm', { event })
@@ -67,12 +56,10 @@ module.exports = {
 
   // TODO make validation
 
-
     Event.update({ _id: eventId }, { $set: updatedEvent }).then(err => {
       res.redirect('/')
     })
   },
-
   deleteSubmit:(req,res)=>{
 
     let articleId = req.params.id
