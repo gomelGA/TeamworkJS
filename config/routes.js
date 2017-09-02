@@ -21,6 +21,8 @@ module.exports = app => {
 
   app.get('/deleteEvent:id',eventController.deleteSubmit)
 
-
   app.get('/profile', homeController.profileView)
+
+  app.get('/buyTicket:id', eventController.getBuyTicket)
+  app.post('/buyTicket:id', eventController.submitBuyTicker)
 }

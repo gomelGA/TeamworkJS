@@ -30,7 +30,6 @@ module.exports = {
     //     return
     // }
 
-    console.log(eventParams)
     eventParams.tags = eventParams.tags.split(',')
     eventParams.author = req.user.id
 
@@ -40,7 +39,6 @@ module.exports = {
 
     Event.create(eventParams).then(event => {
       req.user.eventsCreated.push(event.id)
-
       req.user.save(err => {
         if (err) {
           console.log(err)
@@ -50,17 +48,14 @@ module.exports = {
       })
     })
 
-    console.log(req.body)
   },
   editFormGet: (req, res) => {
     let eventId = req.params.id
 
     Event.findOne({ _id: eventId }).then(event => {
-      console.log(event)
+     
       event.eventDate = event.eventDate.toString()
-
-      console.log(event)
-      
+   
       event.tags = event.tags.join(',')
       res.render('eventForms/editForm', { event })
     })
@@ -85,6 +80,25 @@ module.exports = {
     Event.findOne({_id:articleId}).remove().then(x=>{
         res.redirect('/profile')
     })
+
+  },
+  getBuyTicket:(req,res)=>{
+
+    let eventId = req.params.id
+
+    Event.findOne({_id:eventId}).then(event=>{
+      res.render('eventForms/buyForm',{event})
+    })   
+  },
+  submitBuyTicker:(req,res)=>{
+      let eventId = req.params.id
+      let userId = req.user._id
+
+      Event.update({_id:eventId},{$addToSet:{atendants:userId}}).then(()=>{
+        User.update({_id:userId},{$addToSet:{cart:eventId}}).then(()=>{
+          res.redirect('/profile')
+        })
+      })
 
   }
 }
