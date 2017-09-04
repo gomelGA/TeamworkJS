@@ -32,3 +32,29 @@
     display: block;
     margin: 0 auto;
 }
+
+.eventElem{
+    max-width: 25%;
+    position: relative;
+    float: left;
+}
+
+.eventElem .eventPreviewImg{
+    max-width: 100%
+}
+
+#map {
+        height: 400px;
+        width: 100%;
+       }
+.longAt{
+    visibility: hidden;
+}
+
+.bootstrap-tagsinput {
+            width: 100%;
+        }
+        
+.label {
+            line-height: 2 !important;
+        }

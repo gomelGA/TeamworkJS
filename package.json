@@ -2,12 +2,12 @@
   "name": "teamworkjs",
   "version": "1.0.0",
   "description": "SoftUni Project",
-  "main": "app.js",
+  "main": "bin/www",
   "scripts": {
     "test": "mocha",
     "prestart": "npm-run-all --parallel lint",
     "start": "npm-run-all --parallel security-check server:boot test",
-    "server:boot": "nodemon app.js",
+    "server:boot": "nodemon bin/www",
     "lint": "eslint --fix .",
     "security-check": "nsp check",
     "share": "lt --port 5000"
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/gomelGA/TeamworkJS#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "crypto-js": "^3.1.9-1",
@@ -32,7 +33,8 @@
     "hbs": "^4.0.1",
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.5",
-    "passport": "^0.4.0"
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "chai": "^4.1.1",
