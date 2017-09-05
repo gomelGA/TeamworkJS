@@ -1,16 +1,24 @@
-const app = require('express'),
-	userRouter = app.Router(),
-	userController = require('../controllers/UserController');
+const express = require('express'),
+    userRouter = express.Router(),
+    userController = require('../controllers/user');
 
 
 var router = (function () {
 
-	userRouter.post('/registerUser', function (req, res) {
-		userController.registerUser(req, res);
-	});
+    userRouter.get('/login', function (req, res) {
+        res.render('user/login');
+    });
 
-	return userRouter;
+    userRouter.get('/register', function (req, res) {
+        res.render('user/register');
+    });
 
-});
+    userRouter.post('/register', function (req, res) {
+        userController.registerUser(req, res);
+    });
+
+    return userRouter;
+
+})();
 
 module.exports = router;

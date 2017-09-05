@@ -3,7 +3,8 @@
         "browser": true,
         "commonjs": true,
         "jquery": true,
-        "mocha": true
+        "mocha": true,
+        "node": true
     },
     "parserOptions": {
         "ecmaVersion": 6

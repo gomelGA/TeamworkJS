@@ -1,6 +1,6 @@
-const app = require('express'),
-	homeRouter = app.Router(),
-	homeController = require('../controllers/HomeController')();
+const express = require('express'),
+	homeRouter = express.Router(),
+	homeController = require('../controllers/home');
 
 /**
  *
@@ -12,7 +12,7 @@ const app = require('express'),
 
 var router = (function () {
 	homeRouter.get('/', function (req, res) {
-		homeController.getIndex(req, res);
+		homeController.listEvents(req, res);
 	});
 
 	homeRouter.get('/ajaxReq', function (req, res) {

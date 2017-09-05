@@ -1,5 +1,5 @@
 <div id='evevntsBox' class="container">
-     
+
     {{#each elems}}
     <div class="well eventElem">
         <h1>{{this.eventTitle}}</h1>
@@ -8,14 +8,15 @@
             <div>
                 <tags>{{this.tags}}</tags>
                 <div>{{this.eventDate}}</div>
-                <div>{{this.ticketPrice}}</price>
+                <div>{{this.ticketPrice}}</div>
 
-                    {{#if user}}
-                    <a href="buyTicket{{this.id}}"><button>Info</button></a>
-                    {{/if}}
-                </div>
-                <div>{{this.author.fullName}}</div>
+                {{#if user}}
+                <a href="buyTicket{{this.id}}">
+                    <button>Info</button>
+                </a>
+                {{/if}}
             </div>
+            <div>{{this.author.fullName}}</div>
         </div>
     </div>
     {{/each}}

@@ -22,6 +22,7 @@
 
     <style type="text/css">
 
+
     </style>
 </head>
 
@@ -29,18 +30,17 @@
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                    aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    </button>
+                </button>
 
-                    <a class="navbar-brand nav-header navbarHeader" href="/">
-                        <div class="navLogo"></div>
-                        Ticketeer
-                    </a>
+                <a class="navbar-brand nav-header navbarHeader" href="/">
+                    <div class="navLogo"></div>
+                    Ticketeer
+                </a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -63,7 +63,6 @@
                         <li><a href="/createEvent">Create new Event</a></li>
                         <li><a href="/profile">MyProfile</a></li>
                         {{/if}}
-                    </li>
                 </ul>
                 {{#if user}}
                 <ul class="nav navbar-nav navbar-right">
@@ -72,16 +71,15 @@
                 </ul>
                 {{else}}
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="/register">Sign up</a></li>
-                    <li><a href="/login">Sign in</a></li>
+                    <li class="active"><a href="/users/register">Sign up</a></li>
+                    <li><a href="/users/login">Sign in</a></li>
                 </ul>
                 {{/if}}
             </div>
         </div>
     </nav>
     {{#if error }}
-    <h2>{{error}}</h2>
-    {{/if}} {{{body}}}
+    <h2>{{error}}</h2> {{/if}} {{{body}}}
 
 
 </body>

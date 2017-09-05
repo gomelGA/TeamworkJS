@@ -9,13 +9,16 @@
             <div>
                 <tags>{{this.tags}}</tags>
                 <div>{{this.eventDate}}</div>
-                <div>{{this.ticketPrice}}</price>
-                    <div>{{this.location}}</div>
-                </div>
-                <a href="/editEvent{{this.id}}"><button class="btn-info">Edit</button></a>
-                <a href="/deleteEvent{{this.id}}"><button class="btn-danger">Delete</button></a>
-                <div>{{this.author.fullName}}</div>
+                <div>{{this.ticketPrice}}</div>
+                <div>{{this.location}}</div>
             </div>
+            <a href="/editEvent{{this.id}}">
+                <button class="btn-info">Edit</button>
+            </a>
+            <a href="/deleteEvent{{this.id}}">
+                <button class="btn-danger">Delete</button>
+            </a>
+            <div>{{this.author.fullName}}</div>
         </div>
     </div>
     {{/each}}
@@ -30,11 +33,10 @@
             <div>
                 <tags>{{this.tags}}</tags>
                 <div>{{this.eventDate}}</div>
-                <div>{{this.ticketPrice}}</price>
-                    <div>{{this.location}}</div>
-                </div>
-                <div>{{this.author.fullName}}</div>
+                <div>{{this.ticketPrice}}</div>
+                <div>{{this.location}}</div>
             </div>
+            <div>{{this.author.fullName}}</div>
         </div>
     </div>
     {{/each}}

@@ -1,19 +1,17 @@
-const mongoose = require('mongoose')
-mongoose.Promise = global.Promise
+require('../models/UserSchema');
+require('../models/EventSchema');
 
-module.exports = config => {
-  mongoose.connect(config.connectionString)
+const mongoose = require('mongoose');
 
-  let database = mongoose.connection
-  database.once('open', error => {
-    if (error) {
-      console.log(error)
-      return
-    }
+var url = 'mongodb://softuni_user:mag1karp@ds055875.mlab.com:55875/softuni_project';
 
-    console.log('MongoDB ready!')
-  })
+var options = {
+  
+	useMongoClient: true
+    
+};
 
-  require('./../models/UserSchema')
-  require('./../models/EventSchema')
-}
+var db = mongoose.createConnection(url, options);
+module.exports = {
+	db: db
+};

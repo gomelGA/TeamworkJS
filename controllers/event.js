@@ -1,106 +1,109 @@
-const User = require('mongoose').model('User')
-const Event = require('mongoose').model('Event')
+const User = require('mongoose').model('User');
+const Event = require('mongoose').model('Event');
 
 module.exports = {
-  creationFormGet: (req, res) => {
-    res.render('eventForms/createForm')
-  },
-  creationFormSubmit: (req, res) => {
-    let eventParams = req.body
-    // TODO
-    /* must validate the article params
+
+	/**
+     * Param next represents a callback function which is executed on success
+     */
+	createEvent: (req, res, next) => {
+		let eventParams = req.body;
+		// TODO
+		/* must validate the article params
         and user authentication logick
         als0 to create the new article in the db
         also to push the article id in the userCreatedArticles
         after creation must be redirected to view with events
         */
 
-    let articleValidation = validateArticle(eventParams)
-    let authenticationValidation = authentication(req)
+		//let articleValidation = validateArticle(eventParams);
+		//let authenticationValidation = authentication(req);
 
 
 
-    eventParams.tags = eventParams.tags.split(',')
-    eventParams.author = req.user.id
+		eventParams.tags = eventParams.tags.split(',');
+		eventParams.author = req.user.id;
 
-    if (eventParams.img == '') {
-      delete eventParams.img
-    }
+		if (eventParams.img === '') {
+			delete eventParams.img;
+		}
 
-    Event.create(eventParams).then(event => {
-      req.user.eventsCreated.push(event.id)
-      req.user.save(err => {
-        if (err) {
-          console.log(err)
-        } else {
-          res.redirect('/')
-        }
-      })
-    })
+		Event.create(eventParams).then(event => {
+			req.user.eventsCreated.push(event.id);
+			req.user.save(err => {
+				if (err) {
+					console.log(err);
+				} else {
+					next();
+				}
+			});
+		});
 
-  },
-  editFormGet: (req, res) => {
-    let eventId = req.params.id
+	},
+	editEvent: (id,eventBody,next) => {
+		let eventId = id;
+		let updatedEvent = eventBody;
+		updatedEvent.tags = updatedEvent.tags.split(',');
 
-    Event.findOne({ _id: eventId }).then(event => {
-     
-   
-      event.tags = event.tags.join(',')
-      res.render('eventForms/editForm', { event })
-    })
-  },
-  editFormSubmit: (req, res) => {
-    let eventId = req.params.id
-    let updatedEvent = req.body
-    updatedEvent.tags = updatedEvent.tags.split(',')
+		// TODO make validation
 
-  // TODO make validation
+		Event.update({ _id: eventId }, { $set: updatedEvent }).then(err => {
+			//LogErr
+			console.log(err);
+			//Later we will transition to logger maybe
+			next();
+		});
+	},
+	deleteEvent: (id, next) => {
 
-    Event.update({ _id: eventId }, { $set: updatedEvent }).then(err => {
-      res.redirect('/')
-    })
-  },
-  deleteSubmit:(req,res)=>{
+		let eventId = id;
+		// TODO make validation
+		Event.findOne({_id: eventId}).remove().then(()=>{
+            
+			next();
+		}).catch(err =>{
+			console.log(err);
+		});
 
-    let articleId = req.params.id
-  // TODO make validation
-    Event.findOne({_id:articleId}).remove().then(x=>{
-        res.redirect('/profile')
-    })
+	},
+	getEventById: (id) => {
 
-  },
-  getBuyTicket:(req,res)=>{
+		//This should be handled
+		if(typeof id !== 'string'){
+			throw new Error('Invalid Id');
+		}
+        
+		let eventId = id;
 
-    let eventId = req.params.id
+		//Returns a promise
+		return Event.findOne({_id:eventId});  
+	},
+    
+	buyTicket : (req,res)=>{
+		let eventId = req.params.id;
+		let userId = req.user._id;
 
-    Event.findOne({_id:eventId}).then(event=>{
-      res.render('eventForms/buyForm',{event})
-    })   
-  },
-  submitBuyTicker:(req,res)=>{
-      let eventId = req.params.id
-      let userId = req.user._id
+		Event.update({_id:eventId},{$addToSet:{atendants:userId}}).then(()=>{
+			User.update({_id:userId},{$addToSet:{cart:eventId}}).then(()=>{
+				res.redirect('/profile');
+			});
+		});
 
-      Event.update({_id:eventId},{$addToSet:{atendants:userId}}).then(()=>{
-        User.update({_id:userId},{$addToSet:{cart:eventId}}).then(()=>{
-          res.redirect('/profile')
-        })
-      })
-
-  }
-}
-
-function validateArticle (article) {
-  let errMsg = ''
-  // TODO make validation
-
-  return errMsg
-}
-
-function authentication (req) {
-  let errMsg = ''
-  if (!req.isAuthenticated()) {
-    errMsg = 'U are not authorized'
-  }
-  return errMsg
-}
+	}
+};
+//For Later incorporation !!
+//function validateArticle (article) {
+//	let errMsg = '';
+//	// TODO make validation
+//    console.log("TODO: Validate "+article);
+//    //Temporary usage of article
+//	return errMsg;
+//}
+//
+//function authentication (req) {
+//	let errMsg = '';
+//	if (!req.isAuthenticated()) {
+//		errMsg = 'U are not authorized';
+//	}
+//	return errMsg;
+//}
