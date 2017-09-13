@@ -5,12 +5,10 @@
     font-family: Title;
     font-size: 30px !important;
     text-transform: uppercase;
-
     transition: all 0.4s;
     background-color: #F8F8F8;
     border-right: 1px solid gray;
 }
-
 .navLogo {
     background-image: url("../img/Logo.png");
     background-size: 95%;
@@ -22,39 +20,36 @@
     height: 50px;
     width: 50px;
 }
-
 .navbarHeader:hover {
     background-color: #AAAAAA !important;
-    border-right:1px solid white;
+    border-right: 1px solid white;
 }
-
 #regButton {
     display: block;
     margin: 0 auto;
 }
-
-.eventElem{
+.eventElem {
     max-width: 25%;
     position: relative;
     float: left;
 }
-
-.eventElem .eventPreviewImg{
+.eventElem .eventPreviewImg {
     max-width: 100%
 }
-
 #map {
-        height: 400px;
-        width: 100%;
-       }
-.longAt{
+    height: 400px;
+    width: 100%;
+}
+.longAt {
     visibility: hidden;
 }
-
 .bootstrap-tagsinput {
-            width: 100%;
-        }
-        
+    width: 100%;
+}
 .label {
-            line-height: 2 !important;
-        }
+    line-height: 2 !important;
+}
+.error-message{
+    text-align: center;
+    margin-left: auto;
+}

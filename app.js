@@ -3,14 +3,17 @@ const express = require('express'),
 	cookieParser = require('cookie-parser'),
 	bodyParser = require('body-parser'),
 	session = require('express-session'),
-	passport = require('passport');
-
+	passport = require('passport'),
+	logger = require('morgan')('dev');
 
 // View engine setup.
 app.set('view engine', 'hbs');
 
 //Public folder
 app.use(express.static('public'));
+
+//Morgan with dev mode set on to log the requests
+app.use(logger);
 
 // This set up which is the parser for the request's data.
 app.use(bodyParser.json());
@@ -32,6 +35,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Initializing mongoose connection and models
+require('./config/database');
+//Adding the main functions in passport
+require('./config/passport');
+
 app.use((req, res, next) => {
 	if (req.user) {
 		res.locals.user = req.user;
@@ -39,12 +47,16 @@ app.use((req, res, next) => {
 
 	next();
 });
-require('./config/database');
-require('./config/passport');
+
+app.use(function(err,req,res,next){
+	console.log(err); 
+	next();
+});
 
 const userRouter = require('./routes/userRouter'),
 	homeRouter = require('./routes/homeRouter'),
-	eventRouter = require('./routes/eventRouter');
+	eventRouter = require('./routes/eventRouter'),
+	userRouterProtected = require('./routes/userRouterProtected');
 /**
  * Setting up the routers as intermediaries and middleware
  * instead of using the controllers here
@@ -54,8 +66,10 @@ const userRouter = require('./routes/userRouter'),
 app.use('/', homeRouter);
 
 app.use('/users', userRouter);
+app.use('/users', userRouterProtected);
 
 app.use('/events', eventRouter);
+
 
 
 app.listen(3000, function () {

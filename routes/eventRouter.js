@@ -5,15 +5,20 @@ const express = require('express'),
 
 var router = (function () {
 
+	eventRouter.use(function(req,res,next){
+		if(!req.user){
+		  return res.redirect('/');
+        }
+        next();
+	});
+    
 	eventRouter.get('/create', function (req, res) {
 		res.render('events/createForm');
 	});
 
 	eventRouter.post('/create', function (req, res) {
 		//Third parameter is a callback function
-		eventController.createEvent(req, res, () => {
-			res.redirect('/');   
-		});
+		eventController.createEvent(req, res);
 	});
 
 	eventRouter.get('/edit/:id', function (req, res) {

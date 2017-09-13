@@ -1,12 +1,13 @@
-const User = require('mongoose').model('User');
-const Event = require('mongoose').model('Event');
+const db = require('../config/database').db;
+const User = db.model('User');
+const Event = db.model('Event');
 
 module.exports = {
 
 	/**
      * Param next represents a callback function which is executed on success
      */
-	createEvent: (req, res, next) => {
+	createEvent: (req, res) => {
 		let eventParams = req.body;
 		// TODO
 		/* must validate the article params
@@ -32,10 +33,10 @@ module.exports = {
 			req.user.eventsCreated.push(event.id);
 			req.user.save(err => {
 				if (err) {
-					console.log(err);
+					res.render('events/createForm', {error: err});
 				} else {
-					next();
-				}
+                    res.redirect('/');
+				}       
 			});
 		});
 

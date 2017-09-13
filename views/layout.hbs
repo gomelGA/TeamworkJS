@@ -60,14 +60,14 @@
                             <li><a href="#">One more separated link</a></li>
                         </ul>
                         {{#if user}}
-                        <li><a href="/createEvent">Create new Event</a></li>
-                        <li><a href="/profile">MyProfile</a></li>
+                        <li><a href="/events/create">Create Event</a></li>
+                        <li><a href="/users/myprofile">MyProfile</a></li>
                         {{/if}}
                 </ul>
                 {{#if user}}
                 <ul class="nav navbar-nav navbar-right">
                     <li id="profileButton" class="active">Hello {{user.fullName}}</li>
-                    <li><a href="/logout">Logout</a></li>
+                    <li><a href="/users/logout">Logout</a></li>
                 </ul>
                 {{else}}
                 <ul class="nav navbar-nav navbar-right">
@@ -79,13 +79,8 @@
         </div>
     </nav>
     {{#if error }}
-    <h2>{{error}}</h2> {{/if}} {{{body}}}
-
-
+    <h2 class="error-message">{{error}}</h2> {{/if}} {{{body}}}
 </body>
-
-
-
 <footer>
     <div class="container modal-footer">
         <p>&copy; this is the footer</p>
